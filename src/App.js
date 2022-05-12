@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+
 import './App.css';
+import FoodBox from './components/FoodBox';
+import foods from './foods.json';
+import { useState } from 'react';
+import AddFoodForm from './components/AddFoodForm';
+import { Button } from "antd"
+
+
+// EXAMPLE
+// To start using the pre-made Ant Design components we must first import them:
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const [food, foodState] = useState(foods);
+const [mostrarFormulario, setMostrarFormulario] = useState(true)
+const [comidas, setFoods] = useState(foods)
+ 
+function addFood(comida){
+  
+  const newArr = [...comidas, comida]
+  foodState(newArr)
+  console.log(newArr)
+}
+
+return (
+    <div className='masterGrid'>
+    <div className='formGrid'>
+    {mostrarFormulario && <AddFoodForm addFood={addFood}/>}
+    <Button onClick={() => setMostrarFormulario(!mostrarFormulario)}>
+    {mostrarFormulario ? "Hide form" : "Add new food"}
+    </Button>
+ 
+    </div>
+    <div className='foodGrid'>
+      {food.map((comida) => {
+      return  <FoodBox food={ comida } />
+      })}
+    </div>
     </div>
   );
 }

@@ -1,3 +1,31 @@
+.foodGrid {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.masterGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formGrid {
+  width: 600px;
+}
+
+
+
+
+
+
+
+
+
+
+
 .App {
   text-align: center;
 }
